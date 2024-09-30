@@ -1,0 +1,12 @@
+{
+  "name": "docker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "docker": "docker compose -p mosqueicu-stack up",
+    "server": "yarn docker"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

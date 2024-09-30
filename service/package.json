@@ -1,0 +1,25 @@
+{
+  "name": "service",
+  "version": "1.0.0",
+  "type": "module",
+  "files": [
+    "./public*",
+    "./private*"
+  ],
+  "exports": {
+    "./public": {
+      "import": "./public/*",
+      "require": "./public/*"
+    },
+    "./private": {
+      "import": "./private/*",
+      "require": "./private/*"
+    }
+  },
+  "scripts": {
+    "demo": "node demo.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

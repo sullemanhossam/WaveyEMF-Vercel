@@ -1,0 +1,19 @@
+services:
+  nats:
+    image: nats:latest
+    container_name: nats-server
+    ports:
+      - "4222:4222" # NATS client port
+      - "8222:8222" # HTTP monitoring port
+      - "6222:6222" # Route connections (used for clustering)
+    environment:
+      - NATS_SERVER_NAME=nats-server
+      - NATS_CLUSTER_NAME=nats-cluster
+      - NATS_HTTP_PORT=8222
+    restart: unless-stopped
+    networks:
+      - nats-network
+
+networks:
+  nats-network:
+    driver: bridge

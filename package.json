@@ -1,0 +1,25 @@
+{
+  "name": "MosqueICU",
+  "packageManager": "yarn@4.3.1",
+  "private": true,
+  "workspaces": [
+    "app",
+    "api",
+    "docker",
+    "client",
+    "website",
+    "data",
+    "home",
+    "modules/*",
+    "components",
+    "web/*",
+    "database",
+    "packages/*",
+    "post",
+    "server/*",
+    "views"
+  ],
+  "devDependencies": {
+    "lerna": "^8.1.8"
+  }
+}

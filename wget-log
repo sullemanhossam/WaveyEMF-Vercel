@@ -1,0 +1,11 @@
+18.165.201.91, 18.165.201.128, 18.165.201.30, ...
+Connecting to trunk.io (trunk.io)|18.165.201.91|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 512 [binary/octet-stream]
+Saving to: ‘/Users/sullemanhossam/.cache/trunk/cli/tmp.meVxr0WU7S/launcher/latest’
+
+     0K                                                       100% 69.8M=0s
+
+utime(/Users/sullemanhossam/.cache/trunk/cli/tmp.meVxr0WU7S/launcher/latest): No such file or directory
+2024-09-15 12:57:47 (69.8 MB/s) - ‘/Users/sullemanhossam/.cache/trunk/cli/tmp.meVxr0WU7S/launcher/latest’ saved [512/512]
+
