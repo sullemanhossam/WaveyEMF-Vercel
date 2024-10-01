@@ -33,30 +33,7 @@ parse_gitmodules() {
   done < "$GITMODULES_FILE"
 }
 
-# Function to delete the submodule path
-delete_path() {
-  local path=$1
-  if [ -d "$path" ]; then
-    rm -rf "$path"
-    echo "Deleted: $path"
-  else
-    echo "Path not found: $path"
-  fi
-}
-
-# Function to clone the repository with the PAT
-clone_repo() {
-  local url=$1
-  local path=$2
-  git clone "$url" "$path"
-  if [ $? -eq 0 ]; then
-    echo "Cloned: $url into $path"
-  else
-    echo "Failed to clone: $url"
-  fi
-}
-
-# Function to delete the .git folder
+# Function to delete the .git folder in the submodule directory
 delete_git_folder() {
   local path=$1
   local git_folder="$path/.git"
@@ -68,24 +45,26 @@ delete_git_folder() {
   fi
 }
 
-# Main process
-main() {
+# Function to initialize, update, and de-submodule the components
+process_submodules() {
   parse_gitmodules
 
   for i in "${!paths[@]}"; do
     submodule_path="${paths[$i]}"
     submodule_url="${urls[$i]}"
 
-    # Step 1: Delete the submodule path if it exists
-    delete_path "$submodule_path"
+    # Step 1: Initialize the submodule if it's not already initialized
+    if [ ! -d "$submodule_path" ]; then
+      echo "Initializing submodule: $submodule_path"
+      git clone "$submodule_url" "$submodule_path"
+    else
+      echo "Submodule already cloned: $submodule_path"
+    fi
 
-    # Step 2: Clone the repository using the PAT into the submodule path
-    clone_repo "$submodule_url" "$submodule_path"
-
-    # Step 3: Delete the .git folder in the submodule to convert it to a normal folder
+    # Step 2: Remove the submodule's .git directory to convert it into a normal folder
     delete_git_folder "$submodule_path"
   done
 }
 
 # Execute the main function
-main
+process_submodules
