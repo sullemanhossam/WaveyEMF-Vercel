@@ -5,6 +5,8 @@
   "workspaces": [
     "app",
     "api",
+    "git",
+    "git/*",
     "docker",
     "client",
     "website",
