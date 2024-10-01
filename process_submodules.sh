@@ -8,6 +8,15 @@ fi
 
 PAT=$1
 
+# Locate the .gitmodules file, assuming it's in the root of the repository
+GITMODULES_FILE="$(git rev-parse --show-toplevel)/.gitmodules"
+
+# Check if the .gitmodules file exists
+if [ ! -f "$GITMODULES_FILE" ]; then
+  echo ".gitmodules file not found in the root of the repository."
+  exit 1
+fi
+
 # Function to parse the .gitmodules file and extract the submodule path and URL
 parse_gitmodules() {
   paths=()
@@ -21,7 +30,7 @@ parse_gitmodules() {
       url_with_pat=$(echo "$url" | sed -E "s#https://#https://$PAT@#")
       urls+=("$url_with_pat")
     fi
-  done < .gitmodules
+  done < "$GITMODULES_FILE"
 }
 
 # Function to delete the submodule path
